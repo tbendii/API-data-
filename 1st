@@ -1,0 +1,12 @@
+import requests
+import pandas as pd
+import json
+url = "http://api.exchangeratesapi.io/v1/latest?base=EUR&access_key=200b31ad75b6b9a875483eb94e8d9f09" 
+html_data = requests.get(url)
+data = html_data.text
+
+type(data)
+
+df = pd.read_json(data)
+df = df.drop(columns=['success', 'timestamp', 'base', 'date'])
+print(df)
